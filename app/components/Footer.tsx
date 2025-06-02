@@ -84,23 +84,8 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="md:flex md:items-center md:justify-between">
-            <div className="text-sm text-white/60">
-              &copy; {new Date().getFullYear()} Season 26: Life in Progress. All rights reserved.
-            </div>
-            <div className="mt-4 md:mt-0">
-              <div className="flex space-x-6 text-sm text-white/60">
-                <Link href="#" className="hover:text-white">
-                  Privacy Policy
-                </Link>
-                <Link href="#" className="hover:text-white">
-                  Terms of Service
-                </Link>
-                <Link href="#" className="hover:text-white">
-                  Cookie Policy
-                </Link>
-              </div>
-            </div>
+          <div className="text-center text-sm text-white/60">
+            &copy; {new Date().getFullYear()} Season 26: Life in Progress. All rights reserved.
           </div>
         </div>
       </div>

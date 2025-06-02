@@ -62,7 +62,6 @@ export default function ContentSections() {
 
               <div className="p-6">
                 <p className="text-charcoal/80 leading-relaxed mb-4">{section.description}</p>
-                <div className="text-sm text-sage font-medium">Keywords: {section.keywords}</div>
               </div>
             </div>
           ))}

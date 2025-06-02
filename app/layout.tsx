@@ -1,17 +1,13 @@
 import type React from "react"
-import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import { defaultMetadata } from "./metadata"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata: Metadata = {
-  title: "Season 26: Life in Progress",
-  description: "Your unfiltered journey through the messy, magical mid-20s",
-    generator: 'v0.dev'
-}
+export const metadata = defaultMetadata
 
 export default function RootLayout({
   children,

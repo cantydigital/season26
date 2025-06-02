@@ -1,11 +1,15 @@
-import type { Metadata } from "next"
+import { Metadata } from "next"
 import { MapPin, Coffee, Camera, Plane, Heart, BookOpen } from "lucide-react"
+import { generateMetadata } from "../metadata"
 
 export const metadata: Metadata = {
-  title: "About Me - Season 26: Life in Progress",
-  description:
+  ...generateMetadata(
+    "About Me - Season 26: Life in Progress",
     "Meet Zara - a 26-year-old Aussie navigating the beautiful chaos of mid-20s life in Melbourne. From marketing mishaps to travel adventures, this is my story.",
-  keywords: "about Zara, Australian blogger, mid-20s life, Melbourne lifestyle, personal growth journey",
+    "/about",
+    "/og-image.jpg"
+  ),
+  keywords: "about Zara, Australian blogger, mid-20s life, Melbourne lifestyle, personal growth journey"
 }
 
 const interests = [

@@ -2,10 +2,16 @@ import { getAllPosts } from '@/lib/queries';
 import { Post } from '@/types/post';
 import { Metadata } from 'next';
 import BlogPostCard from '@/app/components/BlogPostCard';
+import { generateMetadata } from '../metadata';
 
 export const metadata: Metadata = {
-  title: 'Blog | Season26',
-  description: 'Read our latest articles and blog posts',
+  ...generateMetadata(
+    'Blog | Season26',
+    'Read our latest articles and blog posts about life in your mid-20s, personal growth, and navigating the beautiful chaos of adulthood.',
+    '/blog',
+    '/og-image.jpg'
+  ),
+  keywords: 'Season26 blog, lifestyle blog, personal growth, mid-20s life, blog posts'
 };
 
 export const revalidate = 60; // Revalidate this page every 60 seconds

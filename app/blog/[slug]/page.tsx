@@ -12,6 +12,7 @@ import PortableTextComponent from '@/app/components/PortableTextComponent';
 // Generate metadata for the page
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.season26.com';
   
   if (!post) {
     return {
@@ -20,9 +21,36 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
 
+  // Get featured image or fallback to default og-image
+  const imageUrl = post.mainImage?.asset?.url || `${baseUrl}/og-image.jpg`;
+  
   return {
     title: post.seo?.metaTitle || post.title,
     description: post.seo?.metaDescription || `Read our blog post about ${post.title}`,
+    openGraph: {
+      title: post.seo?.metaTitle || post.title,
+      description: post.seo?.metaDescription || `Read our blog post about ${post.title}`,
+      url: `${baseUrl}/blog/${params.slug}`,
+      siteName: 'Season26',
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+      locale: 'en_US',
+      type: 'article',
+      publishedTime: post.publishedAt,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.seo?.metaTitle || post.title,
+      description: post.seo?.metaDescription || `Read our blog post about ${post.title}`,
+      images: [imageUrl],
+    },
+    keywords: post.seo?.seoKeywords?.join(', ') || 'Season26, blog, article'
   };
 }
 

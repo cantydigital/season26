@@ -9,7 +9,11 @@ export async function getAllPosts(): Promise<Post[]> {
       title,
       "slug": slug.current,
       publishedAt,
-      mainImage,
+      "mainImage": {
+        "asset": {
+          "url": mainImage.asset->url
+        }
+      },
       "categories": categories[]->title,
       "author": author->{name, "image": image.asset->url},
       excerpt,
@@ -28,7 +32,11 @@ export async function getPostBySlug(slug: string): Promise<Post> {
       title,
       "slug": slug.current,
       publishedAt,
-      mainImage,
+      "mainImage": {
+        "asset": {
+          "url": mainImage.asset->url
+        }
+      },
       "categories": categories[]->title,
       "author": author->{name, "image": image.asset->url},
       body,
@@ -47,7 +55,11 @@ export async function getRelatedPosts(slug: string, categories: string[]): Promi
       title,
       "slug": slug.current,
       publishedAt,
-      mainImage,
+      "mainImage": {
+        "asset": {
+          "url": mainImage.asset->url
+        }
+      },
       "categories": categories[]->title,
       "author": author->{name, "image": image.asset->url}
     }`,

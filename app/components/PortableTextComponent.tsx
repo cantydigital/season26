@@ -12,13 +12,30 @@ const PortableTextComponent: React.FC<PortableTextComponentProps> = ({ content }
   const components = {
     types: {
       image: ({ value }: any) => {
-        if (!value?.asset?.url) {
+        // Handle different ways the image might be structured in Sanity
+        let imageUrl = '';
+        
+        if (value?.asset?._ref) {
+          // Convert Sanity reference to URL
+          // Format is like "image-Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000-jpg"
+          const ref = value.asset._ref;
+          const [, id, dimensions, format] = ref.split('-');
+          
+          // Construct the URL using Sanity's image CDN
+          imageUrl = `https://cdn.sanity.io/images/02jhhvr4/production/${id}-${dimensions}.${format}`;
+        } else if (value?.asset?.url) {
+          // If URL is already provided
+          imageUrl = value.asset.url;
+        }
+        
+        if (!imageUrl) {
           return null;
         }
+        
         return (
           <div className="relative w-full h-96 my-8">
             <Image
-              src={value.asset.url}
+              src={imageUrl}
               alt={value.alt || ''}
               fill
               className="object-contain"
@@ -65,10 +82,30 @@ const PortableTextComponent: React.FC<PortableTextComponentProps> = ({ content }
       },
     },
     block: {
-      h1: ({ children }: any) => <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>,
-      h2: ({ children }: any) => <h2 className="text-2xl font-bold mt-8 mb-4">{children}</h2>,
-      h3: ({ children }: any) => <h3 className="text-xl font-bold mt-6 mb-3">{children}</h3>,
-      h4: ({ children }: any) => <h4 className="text-lg font-bold mt-4 mb-2">{children}</h4>,
+      h1: ({ children }: any) => (
+        <>
+          <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>
+          <hr className="border-t border-gray-300 dark:border-gray-700 mb-6" />
+        </>
+      ),
+      h2: ({ children }: any) => (
+        <>
+          <h2 className="text-2xl font-bold mt-8 mb-4">{children}</h2>
+          <hr className="border-t border-gray-300 dark:border-gray-700 mb-6" />
+        </>
+      ),
+      h3: ({ children }: any) => (
+        <>
+          <h3 className="text-xl font-bold mt-6 mb-3">{children}</h3>
+          <hr className="border-t border-gray-200 dark:border-gray-800 mb-4" />
+        </>
+      ),
+      h4: ({ children }: any) => (
+        <>
+          <h4 className="text-lg font-bold mt-4 mb-2">{children}</h4>
+          <hr className="border-t border-gray-200 dark:border-gray-800 mb-4" />
+        </>
+      ),
       blockquote: ({ children }: any) => (
         <blockquote className="border-l-4 border-primary-500 pl-4 italic my-6">{children}</blockquote>
       ),

@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+# Optional: cache Next.js build for faster builds
+[build.processing]
+  skip_processing = true

@@ -43,31 +43,9 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
             {post.title}
           </h2>
           
-          <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
-            {post.excerpt || 'Read this article to learn more...'}
-          </p>
-          
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              {post.author?.image ? (
-                <div className="relative h-8 w-8 rounded-full overflow-hidden mr-2">
-                  <Image
-                    src={post.author.image}
-                    alt={post.author.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              ) : (
-                <div className="h-8 w-8 rounded-full bg-gray-200 dark:bg-gray-700 mr-2"></div>
-              )}
-              <span className="text-sm text-gray-600 dark:text-gray-400">{post.author?.name}</span>
-            </div>
-            
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              {post.publishedAt ? format(new Date(post.publishedAt), 'MMM dd, yyyy') : 'No date'}
-            </span>
-          </div>
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            {post.publishedAt ? format(new Date(post.publishedAt), 'MMM dd, yyyy') : 'No date'}
+          </span>
         </div>
       </div>
     </Link>

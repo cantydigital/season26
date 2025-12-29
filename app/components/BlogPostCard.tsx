@@ -10,9 +10,9 @@ interface BlogPostCardProps {
 
 const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
   return (
-    <Link href={`/blog/${post.slug}`} className="group">
-      <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-200 hover:shadow-xl hover:-translate-y-1">
-        <div className="relative h-64 w-full">
+    <Link href={`/blog/${post.slug}`} className="group block">
+      <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-all duration-200 hover:shadow-xl flex flex-col md:flex-row">
+        <div className="relative h-48 md:h-auto md:w-64 flex-shrink-0">
           {post.mainImage?.asset?.url ? (
             <Image
               src={post.mainImage.asset.url}
@@ -27,8 +27,8 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
           )}
         </div>
         
-        <div className="p-6">
-          <div className="flex flex-wrap gap-2 mb-2">
+        <div className="p-6 flex-1">
+          <div className="flex flex-wrap gap-2 mb-3">
             {post.categories?.map((category, index) => (
               <span 
                 key={index} 
@@ -39,7 +39,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
             ))}
           </div>
           
-          <h2 className="text-xl font-semibold mb-2 group-hover:text-primary-600 transition-colors duration-200">
+          <h2 className="text-2xl font-semibold mb-2 group-hover:text-primary-600 transition-colors duration-200">
             {post.title}
           </h2>
           
